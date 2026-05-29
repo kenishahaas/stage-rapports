@@ -200,3 +200,93 @@ body {
 .action-btn:hover { opacity: 0.9; }
 .btn-purple { background-color: var(--btn-purple); }
 .btn-teal { background-color: var(--btn-teal); }
+
+/* ==========================================================================
+   9. ADAPTATION RESPONSIVE (Mobiles et Tablettes)
+   ========================================================================== */
+
+/* --- 1. TABLETTES & PETITS ÉCRANS (Moins de 1024px) --- */
+@media (max-width: 1024px) {
+    /* Navbar : on réduit les espaces */
+    .navbar {
+        padding: 0 20px;
+        height: 70px;
+    }
+    
+    .logo-text-real, .gls-sub-block {
+        display: none; /* Cache les petits sous-textes des logos pour gagner de la place */
+    }
+
+    /* Pages intérieures : la colonne de droite passe en dessous */
+    .week-detail-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .page-container {
+        padding: 30px 40px; /* On réduit les grosses marges des côtés */
+    }
+}
+
+/* --- 2. SMARTPHONES (Moins de 768px) --- */
+@media (max-width: 768px) {
+    /* Accueil (Hero) */
+    .hero-container {
+        background-position: center; /* Centre l'image de fond */
+        padding: 20px;
+        height: auto;
+        min-height: calc(100vh - 145px);
+    }
+
+    .hero-content {
+        padding-left: 0; /* Aligne le contenu à gauche sur mobile */
+        max-width: 100%;
+    }
+
+    .main-title {
+        font-size: 32px; /* Titre plus petit pour éviter qu'un mot soit coupé */
+    }
+
+    .logos-row {
+        flex-direction: column; /* Aligne les logos l'un en dessous de l'autre */
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .info-card {
+        width: 100%; /* La carte d'infos prend toute la largeur */
+    }
+
+    /* Liste des semaines (`semaines.html`) */
+    .page-container {
+        padding: 20px 15px;
+    }
+
+    .week-card {
+        flex-direction: column; /* Le bouton "Ouvrir" passe en dessous du texte */
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btn-open {
+        width: 100%; /* Le bouton prend toute la largeur sur mobile */
+        text-align: center;
+    }
+
+    /* Barre du bas (Boutons Accueil) */
+    .bottom-bar {
+        height: auto;
+        padding: 15px;
+    }
+
+    .buttons-center {
+        flex-direction: column; /* Boutons l'un sur l'autre */
+        width: 100%;
+        gap: 10px;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

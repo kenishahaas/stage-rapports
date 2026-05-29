@@ -1,0 +1,520 @@
+/* ==========================================================================
+   1. CONFIGURATION GENERALE & VARIABLES
+   ========================================================================== */
+:root {
+    --dark-navy: #0a1128;       /* Couleur des bandeaux supérieurs et inférieurs */
+    --active-blue: #0c5adb;     /* Bleu vif (onglets actifs, boutons principaux) */
+    --bg-light: #f4f6f9;        /* Fond gris très clair des pages intérieures */
+    --text-dark: #1e293b;       /* Texte principal */
+    --text-muted: #64748b;      /* Textes secondaires, légendes et dates */
+    --white: #ffffff;
+    
+    /* Boutons de la page d'accueil */
+    --btn-purple: #4933ef;      /* Violet pour "Semaines de stage" */
+    --btn-teal: #007a53;        /* Vert/Teal pour "Annexes" */
+    
+    --font-main: 'Inter', sans-serif;
+}
+
+/* Reset complet pour éviter les décalages de marge */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. BARRE DE NAVIGATION COMMUNE (En-tête de toutes les pages)
+   ========================================================================== */
+.navbar {
+    background-color: var(--dark-navy);
+    color: var(--white);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-left, .logo-right, .logo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-cs {
+    color: #ef4444; /* Rouge emblématique du Lycée */
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.book-icon {
+    font-size: 22px;
+    color: var(--white);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text .title {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.logo-text .subtitle {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.2;
+}
+
+.uppercase { 
+    text-transform: uppercase; 
+}
+
+/* Liens de l'onglet de navigation */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 6px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* État actif (Bouton/Pilule bleue) */
+.nav-links a.nav-btn-active {
+    background-color: var(--active-blue);
+    font-weight: 600;
+}
+
+.nav-links a.nav-btn-active:hover {
+    background-color: #0b4ec2;
+}
+
+/* ==========================================================================
+   3. ÉCRAN 1 : ACCUEIL (Image de la Tour & Carré d'infos)
+   ========================================================================== */
+.hero-container {
+    flex: 1;
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1599946347371-68eb71b16afc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center right;
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 145px); /* Déduit la barre du haut (70px) et du bas (75px) */
+}
+
+/* Le dégradé linéaire qui estompe la tour vers la gauche */
+.hero-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, #ffffff 35%, rgba(255, 255, 255, 0.6) 60%, transparent 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-left: 80px;
+    max-width: 650px;
+}
+
+.main-title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--dark-navy);
+    margin-bottom: 8px;
+}
+
+.section-subtitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--btn-purple);
+    margin-bottom: 30px;
+}
+
+/* Les deux logos alignés sous le titre principal */
+.logos-row {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 25px;
+}
+
+.book-icon-dark { 
+    font-size: 24px; 
+    color: var(--dark-navy); 
+}
+
+.logo-cs-dark { 
+    color: #ef4444; 
+    font-size: 26px; 
+    font-weight: 800; 
+}
+
+.logo-text-dark { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.logo-text-dark .title { 
+    font-size: 13px; 
+    font-weight: 700; 
+    color: var(--dark-navy); 
+}
+
+.logo-text-dark .subtitle { 
+    font-size: 10px; 
+    color: var(--text-muted); 
+    line-height: 1.2; 
+}
+
+/* Le petit carré blanc d'informations (Compact et flottant) */
+.info-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 22px 25px;
+    width: 390px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+.info-card p {
+    font-size: 13.5px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.info-card p:last-child { 
+    margin-bottom: 0; 
+}
+
+.info-card .label { 
+    font-weight: 600; 
+    color: #475569; 
+}
+
+.info-card .val-blue { 
+    color: var(--active-blue); 
+    font-weight: 700; 
+}
+
+.info-card .val-black { 
+    color: var(--text-dark); 
+    font-weight: 600; 
+}
+
+/* BARRE NOIRE INFÉRIEURE D'ACCUEIL */
+.bottom-bar {
+    background-color: var(--dark-navy);
+    height: 75px;
+    display: flex;
+    justify-content: center; /* Centre les boutons horizontalement */
+    align-items: center;     /* Centre les boutons verticalement */
+    z-index: 10;
+}
+
+.buttons-center {
+    display: flex;
+    gap: 20px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 28px;
+    border-radius: 25px; /* Forme de pilule bien arrondie */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+.btn-purple { background-color: var(--btn-purple); }
+.btn-teal { background-color: var(--btn-teal); }
+
+/* ==========================================================================
+   4. STRUCTURES DES PAGES DE CONTENU (Gris clair en arrière-plan)
+   ========================================================================== */
+.page-container {
+    flex: 1;
+    padding: 40px 80px;
+    background-color: var(--bg-light);
+    overflow-y: auto;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-icon {
+    font-size: 26px;
+    color: var(--btn-purple); /* Par défaut violet, modifiable inline si nécessaire */
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-navy);
+}
+
+/* Lien de retour (Utilisé sur la page détail Semaine 1) */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--active-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+
+.back-link:hover { 
+    color: var(--dark-navy); 
+}
+
+/* ==========================================================================
+   5. ÉCRAN 2 : LISTE DES SEMAINES (`semaines.html`)
+   ========================================================================== */
+.weeks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 1000px;
+}
+
+.week-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
+}
+
+.week-info-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.week-icon-box {
+    background-color: #eff6ff;
+    color: var(--active-blue);
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.week-text h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.week-text p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.btn-open {
+    background-color: var(--active-blue);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.btn-open:hover { 
+    background-color: #0b4ec2; 
+}
+
+/* ==========================================================================
+   6. ÉCRAN 3 & 4 : BLOCS DE TEXTE & DISPOSITION EN COLONNES (Détails & Annexes)
+   ========================================================================== */
+.week-detail-layout {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    align-items: flex-start;
+}
+
+/* Colonne de gauche (Rapports écrits) */
+.detail-main-content {
+    flex: 2; /* Prend les 2/3 de l'espace */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Blocs blancs de texte structuré (utilisé aussi pour centrer les annexes) */
+.content-block {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
+}
+
+.content-block h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark-navy);
+    margin-bottom: 12px;
+    border-left: 4px solid var(--active-blue);
+    padding-left: 12px;
+}
+
+.content-block p {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.6;
+}
+
+/* Colonne de droite (Encart des documents) */
+.detail-sidebar {
+    flex: 1; /* Prend 1/3 de l'espace */
+    position: sticky;
+    top: 90px; /* Reste fixé si la colonne de gauche est très longue */
+}
+
+.sidebar-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
+}
+
+.sidebar-card h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark-navy);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==========================================================================
+   7. LISTES DE DOCUMENTS ET PIÈCES JOINTES (Téléchargements)
+   ========================================================================== */
+.attachments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Chaque ligne de document cliquable */
+.attachment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid #edf2f7;
+    transition: all 0.2s ease;
+}
+
+/* Effets fluides au survol d'une annexe / pièce jointe */
+.attachment-item:hover {
+    background: #eff6ff; /* Fond bleu très léger */
+    border-color: #bfdbfe; /* Bordure bleutée */
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Couleurs des icônes de documents */
+.file-info .fa-file-pdf {
+    
+    color: #ef4444; /* Rouge pour les fichiers PDF */
+    font-size: 16px;
+}
+
+.file-info .fa-file-image {
+    color: #3b82f6; /* Bleu pour les images/captures */
+    font-size: 16px;
+}
+
+.file-info .fa-file-word {
+    color: #2b579a; /* Bleu foncé pour les fichiers Word (DOCX) */
+    font-size: 16px;
+}
+
+/* Flèche de téléchargement à droite */
+.download-icon {
+    color: var(--text-muted);
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.attachment-item:hover .download-icon {
+    color: var(--active-blue); /* Devient bleue au survol du bloc */
+}

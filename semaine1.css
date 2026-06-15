@@ -51,6 +51,17 @@ body {
     z-index: 100;
 }
 
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.logo-link:hover .title {
+    opacity: 0.85;
+}
+
 .logo-left, .logo-right, .logo-item {
     display: flex;
     align-items: center;

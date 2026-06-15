@@ -27,6 +27,17 @@ body {
     overflow: hidden; 
 }
 
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.logo-link:hover .title {
+    opacity: 0.85;
+}
+
 /* --- Barre de navigation (Haut) --- */
 .navbar {
     background-color: var(--dark-navy);

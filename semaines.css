@@ -84,6 +84,16 @@ body {
     color: var(--text-muted);
     line-height: 1.2;
 }
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.logo-link:hover .title {
+    opacity: 0.85;
+}
 
 .uppercase { text-transform: uppercase; }
 

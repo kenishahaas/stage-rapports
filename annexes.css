@@ -50,6 +50,19 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Lien vers les sites des écoles  */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.logo-link:hover .title {
+    opacity: 0.85;
+}
+
+/* ____________________________________*/
 .logo-left, .logo-right, .logo-item {
     display: flex;
     align-items: center;

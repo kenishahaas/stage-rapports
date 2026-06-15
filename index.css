@@ -1,0 +1,448 @@
+/* =========================================================
+   🎨 VARIABLES GLOBALES (THEME / DESIGN SYSTEM)
+   ========================================================= */
+:root {
+    /* Couleurs principales */
+    --dark-navy: #030f26;      /* Barres header/footer */
+    --active-blue: #0c5adb;    /* Onglet actif */
+    --accent-blue: #0c5adb;    /* Accent principal */
+
+    /* Texte */
+    --text-white: #ffffff;
+    --text-muted: #a0aec0;
+    --text-dark: #070e19;
+
+    /* Boutons */
+    --btn-purple: #4933ef;
+    --btn-teal: #007a53;
+
+    /* Typographie */
+    --font-stack: 'Inter', sans-serif;
+}
+
+
+/* =========================================================
+   🔄 RESET GLOBAL (normalisation navigateur)
+   ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   🧱 STRUCTURE DE BASE DU SITE
+   ========================================================= */
+body {
+    font-family: var(--font-stack);
+    background-color: #ffffff;
+
+    /* Layout global en colonne (header / hero / footer) */
+    display: flex;
+    flex-direction: column;
+
+    /* Pleine hauteur écran */
+    min-height: 100vh;
+    min-height: 100dvh; /* support mobile moderne */
+}
+
+
+/* =========================================================
+   🔗 LIENS LOGO (effet hover discret)
+   ========================================================= */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.logo-link:hover .title {
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   🧭 NAVBAR (BARRE DU HAUT)
+   ========================================================= */
+.navbar {
+    background-color: var(--dark-navy);
+    color: var(--text-white);
+
+    height: 70px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 40px;
+    z-index: 10;
+}
+
+
+/* Groupe logo (gauche / droite / item générique) */
+.logo-left,
+.logo-right,
+.logo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* Logo "CS" */
+.logo-cs,
+.logo-cs-dark {
+    color: #ef4444;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+/* Icônes livres */
+.book-icon {
+    font-size: 22px;
+    color: var(--text-white);
+}
+
+.book-icon-dark {
+    font-size: 24px;
+    color: var(--dark-navy);
+}
+
+
+/* Bloc texte logo */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text .title {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.logo-text .subtitle {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.2;
+}
+
+
+/* Utilitaire texte */
+.uppercase {
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   🔗 NAV LINKS (MENU HAUT)
+   ========================================================= */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: var(--text-white);
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    padding: 8px 16px;
+}
+
+
+/* Onglet actif (style bouton bleu) */
+.nav-links a.nav-btn-active {
+    background-color: var(--active-blue);
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   🌄 HERO (ZONE CENTRALE)
+   ========================================================= */
+.hero-container {
+    flex: 1;
+    position: relative;
+
+    /* Image principale */
+    background-image: url('https://images.unsplash.com/photo-1599946347371-68eb71b16afc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center right;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* Effet de fondu blanc sur la gauche */
+.hero-container::before {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to right,
+        #ffffff 35%,
+        rgba(255, 255, 255, 0.5) 60%,
+        transparent 100%
+    );
+
+    z-index: 1;
+}
+
+
+/* Contenu hero au-dessus du fond */
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    padding-left: 80px;
+    max-width: 600px;
+}
+
+
+/* Titre principal */
+.main-title {
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-dark);
+
+    margin-bottom: 10px;
+}
+
+
+/* Sous-titre */
+.section-subtitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--btn-purple);
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   🧩 LOGOS / LIGNE D'INFOS
+   ========================================================= */
+.logos-row {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 25px;
+}
+
+
+/* Variante texte sombre */
+.logo-text-dark {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text-dark .title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark-navy);
+}
+
+.logo-text-dark .subtitle {
+    font-size: 10px;
+    color: #555;
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   🧾 INFO CARD (BLOC BLANC)
+   ========================================================= */
+.info-card {
+    background: #ffffff;
+
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+
+    padding: 20px 25px;
+
+    width: 380px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Textes internes */
+.info-card p {
+    font-size: 13px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.info-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Styles de valeurs */
+.info-card .label {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.info-card .val-blue {
+    color: var(--accent-blue);
+    font-weight: 700;
+}
+
+.info-card .val-black {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   🔻 BARRE DU BAS (CTA)
+   ========================================================= */
+.bottom-bar {
+    background-color: var(--dark-navy);
+    height: 75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+}
+
+
+/* Container boutons */
+.buttons-center {
+    display: flex;
+    gap: 15px;
+}
+
+
+/* Boutons principaux */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--text-white);
+    text-decoration: none;
+
+    font-weight: 600;
+    font-size: 14px;
+
+    padding: 10px 24px;
+    border-radius: 20px;
+
+    transition: opacity 0.2s ease;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+}
+
+
+/* Couleurs boutons */
+.btn-purple {
+    background-color: var(--btn-purple);
+}
+
+.btn-teal {
+    background-color: var(--btn-teal);
+}
+
+
+/* =========================================================
+   💻 RESPONSIVE DESIGN
+   ========================================================= */
+
+
+/* TABLETTE */
+@media (max-width: 1024px) {
+
+    body {
+        overflow: auto;
+        height: auto;
+    }
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .hero-content {
+        padding-left: 40px;
+        max-width: 90%;
+    }
+
+    .main-title {
+        font-size: 38px;
+    }
+
+    .logos-row {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .info-card {
+        width: 320px;
+    }
+    .logo-text .title {
+    font-size: 12px;
+    font-weight: 600;
+}
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    body {
+        overflow: auto;
+    }
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .main-title {
+        font-size: 28px;
+        line-height: 1.1;
+    }
+
+    .section-subtitle {
+        font-size: 16px;
+    }
+
+    .info-card {
+        width: 360px;
+    }
+
+    .info-card p {
+        font-size: 12px;
+    }
+
+    .action-btn {
+        font-size: 13px;
+        padding: 8px 18px;
+    }
+
+    .logo-text .title {
+        font-size: 12px;
+    }
+
+    .logo-text .subtitle {
+        font-size: 9px;
+    }
+
+    .logo-text .title {
+    font-size: 10px;
+    font-weight: 600;
+}
+}

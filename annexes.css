@@ -114,7 +114,7 @@ body {
     font-weight: 500;
     padding: 8px 18px;
     border-radius: 6px;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .nav-links a:hover {
@@ -532,92 +532,96 @@ body {
     color: var(--active-blue); /* Devient bleue au survol du bloc */
 }
 
-/* ==========================================================================
-   9. ADAPTATION RESPONSIVE (Mobiles et Tablettes)
-   ========================================================================== */
+/* =========================================================
+   📱 10. RESPONSIVE DESIGN
+   ========================================================= */
 
-/* --- 1. TABLETTES & PETITS ÉCRANS (Moins de 1024px) --- */
+/* TABLETTE */
 @media (max-width: 1024px) {
-    /* Navbar : on réduit les espaces */
+    body {
+        overflow: auto;
+        height: auto;
+    }
+
     .navbar {
         padding: 0 20px;
-        height: 70px;
-    }
-    
-    .logo-text-real, .gls-sub-block {
-        display: none; /* Cache les petits sous-textes des logos pour gagner de la place */
-    }
-
-    /* Pages intérieures : la colonne de droite passe en dessous */
-    .week-detail-layout {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .page-container {
-        padding: 30px 40px; /* On réduit les grosses marges des côtés */
-    }
-}
-
-/* --- 2. SMARTPHONES (Moins de 768px) --- */
-@media (max-width: 768px) {
-    /* Accueil (Hero) */
-    .hero-container {
-        background-position: center; /* Centre l'image de fond */
-        padding: 20px;
-        height: auto;
-        min-height: calc(100vh - 145px);
     }
 
     .hero-content {
-        padding-left: 0; /* Aligne le contenu à gauche sur mobile */
-        max-width: 100%;
+        padding-left: 40px;
+        max-width: 90%;
     }
 
     .main-title {
-        font-size: 32px; /* Titre plus petit pour éviter qu'un mot soit coupé */
+        font-size: 38px;
     }
 
     .logos-row {
-        flex-direction: column; /* Aligne les logos l'un en dessous de l'autre */
-        align-items: flex-start;
-        gap: 15px;
+        gap: 20px;
+        flex-wrap: wrap;
     }
 
     .info-card {
-        width: 100%; /* La carte d'infos prend toute la largeur */
+        width: 320px;
     }
 
-    /* Liste des semaines (`semaines.html`) */
+    .logo-text .title {
+    font-size: 12px;
+    font-weight: 600;
+}
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .nav-links a {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
     .page-container {
         padding: 20px 15px;
     }
 
-    .week-card {
-        flex-direction: column; /* Le bouton "Ouvrir" passe en dessous du texte */
-        align-items: flex-start;
-        gap: 15px;
+    .page-title {
+        font-size: 20px;
+    }
+
+    .title-icon {
+        font-size: 22px;
+    }
+
+    .week-text h3 {
+        font-size: 14px;
+    }
+
+    .week-text p {
+        font-size: 11.5px;
     }
 
     .btn-open {
-        width: 100%; /* Le bouton prend toute la largeur sur mobile */
-        text-align: center;
+        font-size: 12px;
+        padding: 7px 16px;
     }
 
-    /* Barre du bas (Boutons Accueil) */
-    .bottom-bar {
-        height: auto;
-        padding: 15px;
+    .week-icon-box {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
     }
 
-    .buttons-center {
-        flex-direction: column; /* Boutons l'un sur l'autre */
-        width: 100%;
-        gap: 10px;
+    .content-block p {
+        font-size: 13px;
     }
 
-    .action-btn {
-        width: 100%;
-        justify-content: center;
+    .sidebar-card h2,
+    .content-block h2 {
+        font-size: 14px;
     }
+
+    .logo-text .title {
+    font-size: 10px;
+    font-weight: 600;
+}
 }

@@ -506,9 +506,6 @@ body {
         height: 70px;
     }
     
-    .logo-text-real, .gls-sub-block {
-        display: none; /* Cache les petits sous-textes des logos pour gagner de la place */
-    }
 
     /* Pages intérieures : la colonne de droite passe en dessous */
     .week-detail-layout {
@@ -519,6 +516,11 @@ body {
     .page-container {
         padding: 30px 40px; /* On réduit les grosses marges des côtés */
     }
+
+    .logo-text .title {
+    font-size: 12px;
+    font-weight: 600;
+}
 }
 
 /* --- 2. SMARTPHONES (Moins de 768px) --- */
@@ -582,4 +584,9 @@ body {
         width: 100%;
         justify-content: center;
     }
+
+    .logo-text .title {
+    font-size: 10px;
+    font-weight: 600;
+}
 }

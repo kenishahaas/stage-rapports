@@ -1,74 +1,98 @@
-/* ==========================================================================
-   1. VARIABLES GLOBALES & THÈME (Couleurs exactes de la maquette)
-   ========================================================================== */
+/* =========================================================
+   🎨 1. VARIABLES GLOBALES (THEME CENTRALISÉ)
+   ========================================================= */
 :root {
-    --dark-navy: #0a1128;       /* Fonds des barres de navigation et footer */
-    --active-blue: #0c5adb;     /* Bleu vif pour l'onglet actif et liens importants */
-    --bg-light: #f4f6f9;        /* Fond gris très clair des pages de contenu */
-    --text-dark: #1e293b;       /* Couleur principale du texte */
-    --text-muted: #64748b;      /* Texte secondaire (dates, sous-titres) */
+    /* Couleurs principales du site */
+    --dark-navy: #0a1128;     /* Navbar + footer + titres forts */
+    --active-blue: #0c5adb;   /* Accent principal / boutons / liens actifs */
+    --bg-light: #f4f6f9;      /* Fond pages secondaires */
+
+    /* Texte */
+    --text-dark: #1e293b;     /* Texte principal */
+    --text-muted: #64748b;    /* Texte secondaire */
     --white: #ffffff;
-    
-    /* Couleurs des boutons d'action */
-    --btn-purple: #4933ef;      /* Violet pour "Semaines de stage" */
-    --btn-teal: #007a53;        /* Vert/Teal pour "Annexes" */
-    
+
+    /* Boutons */
+    --btn-purple: #4933ef;
+    --btn-teal: #007a53;
+
+    /* Typographie */
     --font-main: 'Inter', sans-serif;
 }
 
-/* ==========================================================================
-   2. RESET & STRUCTURE GLOBALE
-   ========================================================================== */
+
+/* =========================================================
+   🔄 2. RESET GLOBAL (NORMALISATION NAVIGATEUR)
+   ========================================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* =========================================================
+   🧱 3. STRUCTURE GLOBALE DU DOCUMENT
+   ========================================================= */
 body {
     font-family: var(--font-main);
     background-color: var(--white);
     color: var(--text-dark);
+
     display: flex;
     flex-direction: column;
+
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* ==========================================================================
-   3. BARRE DE NAVIGATION (Identique sur toutes les pages)
-   ========================================================================== */
+
+/* =========================================================
+   🧭 4. NAVBAR (COMMUNE À TOUTES LES PAGES)
+   ========================================================= */
 .navbar {
     background-color: var(--dark-navy);
     color: var(--white);
+
     height: 70px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 0 40px;
+
     position: sticky;
     top: 0;
     z-index: 100;
+
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-.logo-left, .logo-right, .logo-item {
+
+/* --- LOGO STRUCTURE --- */
+.logo-left,
+.logo-right,
+.logo-item {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
+/* Logo principal */
 .logo-cs {
-    color: #ef4444; /* Rouge vif Camille Sée */
+    color: #ef4444;
     font-size: 24px;
     font-weight: 800;
 }
 
+/* Icône livre */
 .book-icon {
     font-size: 22px;
     color: var(--white);
 }
 
+/* Bloc texte logo */
 .logo-text {
     display: flex;
     flex-direction: column;
@@ -84,6 +108,9 @@ body {
     color: var(--text-muted);
     line-height: 1.2;
 }
+
+
+/* --- LIEN LOGO --- */
 .logo-link {
     text-decoration: none;
     color: inherit;
@@ -95,9 +122,8 @@ body {
     opacity: 0.85;
 }
 
-.uppercase { text-transform: uppercase; }
 
-/* Liens de navigation */
+/* --- MENU NAVIGATION --- */
 .nav-links {
     display: flex;
     align-items: center;
@@ -107,10 +133,13 @@ body {
 .nav-links a {
     color: var(--white);
     text-decoration: none;
+
     font-size: 14px;
     font-weight: 500;
+
     padding: 8px 18px;
     border-radius: 6px;
+
     transition: all 0.2s ease;
 }
 
@@ -118,7 +147,7 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Style pilule bleue pour la page active */
+/* Bouton actif */
 .nav-links a.nav-btn-active {
     background-color: var(--active-blue);
     font-weight: 600;
@@ -128,144 +157,31 @@ body {
     background-color: #0b4ec2;
 }
 
-/* ==========================================================================
-   4. ÉCRAN 1 : ACCUEIL (Hero & Image de la Tour Estompée)
-   ========================================================================== */
-.hero-container {
-    flex: 1;
-    position: relative;
-    background-image: url('https://images.unsplash.com/photo-1599946347371-68eb71b16afc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
-    background-size: cover;
-    background-position: center right;
-    display: flex;
-    align-items: center;
-    height: calc(100vh - 145px); /* Ajusté pour laisser la place aux deux barres */
-}
 
-/* Effet d'estompage progressif vers la gauche */
-.hero-container::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to right, #ffffff 35%, rgba(255, 255, 255, 0.6) 60%, transparent 100%);
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding-left: 80px;
-    max-width: 650px;
-}
-
-.main-title {
-    font-size: 48px;
-    font-weight: 800;
-    line-height: 1.1;
-    color: var(--dark-navy);
-    margin-bottom: 8px;
-}
-
-.section-subtitle {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--btn-purple);
-    margin-bottom: 30px;
-}
-
-/* Alignement des deux logos sur l'accueil */
-.logos-row {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 25px;
-}
-
-.book-icon-dark { font-size: 24px; color: var(--dark-navy); }
-.logo-cs-dark { color: #ef4444; font-size: 26px; font-weight: 800; }
-
-.logo-text-dark { display: flex; flex-direction: column; }
-.logo-text-dark .title { font-size: 13px; font-weight: 700; color: var(--dark-navy); }
-.logo-text-dark .subtitle { font-size: 10px; color: var(--text-muted); line-height: 1.2; }
-
-/* Le petit carré blanc d'informations (Flottant et compact) */
-.info-card {
-    background: var(--white);
-    border-radius: 8px;
-    padding: 22px 25px;
-    width: 390px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e2e8f0;
-}
-
-.info-card p {
-    font-size: 13.5px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.info-card p:last-child { margin-bottom: 0; }
-.info-card .label { font-weight: 600; color: #475569; }
-.info-card .val-blue { color: var(--active-blue); font-weight: 700; }
-.info-card .val-black { color: var(--text-dark); font-weight: 600; }
-
-/* BARRE INFÉRIEURE DE L'ACCUEIL */
-.bottom-bar {
-    background-color: var(--dark-navy);
-    height: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-}
-
-.buttons-center {
-    display: flex;
-    gap: 20px;
-}
-
-.action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    padding: 12px 28px;
-    border-radius: 25px; /* Forme pilule */
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.action-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.95;
-}
-
-.btn-purple { background-color: var(--btn-purple); }
-.btn-teal { background-color: var(--btn-teal); }
-
-/* ==========================================================================
-   5. STRUCTURE DES PAGES DE CONTENU (Semaines, Détails, Annexes)
-   ========================================================================== */
+/* =========================================================
+   📄 5. STRUCTURE DES PAGES (SECTIONS GÉNÉRALES)
+   ========================================================= */
 .page-container {
     flex: 1;
+
     padding: 40px 80px;
+
     background-color: var(--bg-light);
+
     overflow-y: auto;
 }
 
+
+/* Header de page */
 .page-header {
     display: flex;
     align-items: center;
     gap: 15px;
+
     border-bottom: 2px solid #e2e8f0;
+
     padding-bottom: 15px;
     margin-bottom: 30px;
-}
-
-.title-icon {
-    font-size: 26px;
-    color: var(--btn-purple);
 }
 
 .page-title {
@@ -274,154 +190,227 @@ body {
     color: var(--dark-navy);
 }
 
-/* Bouton Retour (Écrans du bas) */
+.title-icon {
+    font-size: 26px;
+    color: var(--btn-purple);
+}
+
+
+/* Bouton retour */
 .back-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+
     color: var(--active-blue);
     text-decoration: none;
+
     font-weight: 600;
     font-size: 14px;
+
     margin-bottom: 20px;
-    transition: color 0.2s;
 }
 
-.back-link:hover { color: var(--dark-navy); }
+.back-link:hover {
+    color: var(--dark-navy);
+}
 
-/* ==========================================================================
-   6. ÉCRAN 2 : LISTE DES SEMAINES (`semaines.html`)
-   ========================================================================== */
+
+/* =========================================================
+   📅 6. PAGE "LISTE DES SEMAINES"
+   ========================================================= */
 .weeks-list {
     display: flex;
     flex-direction: column;
     gap: 14px;
+
     max-width: 1000px;
 }
 
+
+/* --- CARTE SEMAINE --- */
 .week-card {
     background: var(--white);
+
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
+
     padding: 16px 24px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    border: 1px solid #e2e8f0;
 }
 
+
+/* Partie gauche */
 .week-info-left {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
+
+/* Icône semaine */
 .week-icon-box {
-    background-color: #eff6ff;
-    color: var(--active-blue);
     width: 42px;
     height: 42px;
+
+    background-color: #eff6ff;
+    color: var(--active-blue);
+
     border-radius: 6px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     font-size: 18px;
 }
 
+
+/* Texte semaine */
 .week-text h3 {
     font-size: 15px;
     font-weight: 700;
-    color: var(--text-dark);
 }
 
 .week-text p {
     font-size: 12.5px;
     color: var(--text-muted);
-    margin-top: 2px;
 }
 
+
+/* Bouton ouvrir */
 .btn-open {
     background-color: var(--active-blue);
     color: var(--white);
+
     text-decoration: none;
     font-weight: 600;
     font-size: 13px;
+
     padding: 8px 20px;
     border-radius: 6px;
-    transition: background 0.2s;
 }
 
-.btn-open:hover { background-color: #0b4ec2; }
+.btn-open:hover {
+    background-color: #0b4ec2;
+}
 
-/* ==========================================================================
-   7. ÉCRAN 3 : DÉTAIL D'UNE SEMAINE (Mise en page 2 Colonnes)
-   ========================================================================== */
+
+/* =========================================================
+   🔒 7. SEMAINES NON DISPONIBLES (LOCKED STATE)
+   ========================================================= */
+.week-card.disabled {
+    background-color: #f8fafc;
+    opacity: 0.65;
+}
+
+.week-card.disabled .week-icon-box {
+    background-color: #e2e8f0;
+    color: #94a3b8;
+}
+
+.week-card.disabled .week-text h3 {
+    color: #64748b;
+}
+
+.week-card.disabled .btn-open {
+    background-color: #cbd5e1;
+    color: #64748b;
+
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   📚 8. PAGE DÉTAIL SEMAINE (LAYOUT 2 COLONNES)
+   ========================================================= */
 .week-detail-layout {
     display: flex;
     gap: 30px;
+
     max-width: 1200px;
+
     align-items: flex-start;
 }
 
-/* Colonne Gauche : Écrits / Activités */
+
+/* Colonne principale */
 .detail-main-content {
     flex: 2;
+
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
+
+/* Bloc contenu */
 .content-block {
     background: var(--white);
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+
     border: 1px solid #e2e8f0;
+    border-radius: 8px;
+
+    padding: 25px;
 }
 
 .content-block h2 {
     font-size: 16px;
     font-weight: 700;
+
     color: var(--dark-navy);
+
     margin-bottom: 12px;
+
     border-left: 4px solid var(--active-blue);
     padding-left: 10px;
 }
 
 .content-block p {
     font-size: 14px;
-    color: #334155;
     line-height: 1.6;
+    color: #334155;
 }
 
-/* Colonne Droite : Bloc Documents/Annexes de la semaine */
+
+/* Sidebar */
 .detail-sidebar {
     flex: 1;
+
     position: sticky;
     top: 90px;
 }
 
 .sidebar-card {
     background: var(--white);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+
     border: 1px solid #e2e8f0;
+    border-radius: 8px;
+
+    padding: 20px;
 }
 
 .sidebar-card h2 {
     font-size: 15px;
     font-weight: 700;
-    color: var(--dark-navy);
-    margin-bottom: 15px;
+
     display: flex;
     align-items: center;
     gap: 8px;
+
+    margin-bottom: 15px;
 }
 
-/* ==========================================================================
-   8. ÉCRAN 4 : LES ANNEXES (Grilles de fichiers et Listes)
-   ========================================================================== */
+
+/* =========================================================
+   📎 9. ANNEXES / FICHIERS
+   ========================================================= */
 .attachments-list {
     display: flex;
     flex-direction: column;
@@ -432,14 +421,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 10px 12px;
+
     background: var(--bg-light);
+
     border-radius: 6px;
+
     text-decoration: none;
     color: var(--text-dark);
+
     font-size: 13px;
-    font-weight: 500;
-    transition: background 0.2s;
 }
 
 .attachment-item:hover {
@@ -453,8 +445,7 @@ body {
 }
 
 .file-info i {
-    color: #ef4444; /* Rouge pour les PDF par défaut */
-    font-size: 16px;
+    color: #ef4444;
 }
 
 .download-icon {
@@ -465,120 +456,77 @@ body {
     color: var(--active-blue);
 }
 
-/* ==========================================================================
-   STYLE POUR LES SEMAINES NON EFFECTUÉES (GRISÉES)
-   ========================================================================== */
-.week-card.disabled {
-    background-color: #f8fafc; /* Fond légèrement plus terne */
-    border-color: #e2e8f0;
-    opacity: 0.65; /* Rend tout le bloc un peu transparent/passé */
-}
 
-/* Change l'icône bleue en icône grise */
-.week-card.disabled .week-icon-box {
-    background-color: #e2e8f0;
-    color: #94a3b8;
-}
+/* =========================================================
+   📱 10. RESPONSIVE DESIGN
+   ========================================================= */
 
-/* Grise le titre de la semaine */
-.week-card.disabled .week-text h3 {
-    color: #64748b;
-}
-
-/* Transforme le bouton bleu en bouton gris de verrouillage */
-.week-card.disabled .btn-open {
-    background-color: #cbd5e1;
-    color: #64748b;
-    pointer-events: none; /* Désactive complètement le clic sur le lien */
-    cursor: not-allowed;  /* Curseur mode interdit */
-}
-
-/* ==========================================================================
-   9. ADAPTATION RESPONSIVE (Mobiles et Tablettes)
-   ========================================================================== */
-
-/* --- 1. TABLETTES & PETITS ÉCRANS (Moins de 1024px) --- */
+/* TABLETTE */
 @media (max-width: 1024px) {
-    /* Navbar : on réduit les espaces */
     .navbar {
         padding: 0 20px;
-        height: 70px;
-    }
-    
-    .logo-text-real, .gls-sub-block {
-        display: none; /* Cache les petits sous-textes des logos pour gagner de la place */
-    }
-
-    /* Pages intérieures : la colonne de droite passe en dessous */
-    .week-detail-layout {
-        flex-direction: column;
-        gap: 20px;
     }
 
     .page-container {
-        padding: 30px 40px; /* On réduit les grosses marges des côtés */
+        padding: 40px 40px;
     }
+    .logo-text .title {
+    font-size: 12px;
+    font-weight: 600;
+}
 }
 
-/* --- 2. SMARTPHONES (Moins de 768px) --- */
+
+/* MOBILE */
 @media (max-width: 768px) {
-    /* Accueil (Hero) */
-    .hero-container {
-        background-position: center; /* Centre l'image de fond */
-        padding: 20px;
-        height: auto;
-        min-height: calc(100vh - 145px);
+
+    .nav-links a {
+        font-size: 13px;
+        padding: 6px 12px;
     }
 
-    .hero-content {
-        padding-left: 0; /* Aligne le contenu à gauche sur mobile */
-        max-width: 100%;
-    }
-
-    .main-title {
-        font-size: 32px; /* Titre plus petit pour éviter qu'un mot soit coupé */
-    }
-
-    .logos-row {
-        flex-direction: column; /* Aligne les logos l'un en dessous de l'autre */
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .info-card {
-        width: 100%; /* La carte d'infos prend toute la largeur */
-    }
-
-    /* Liste des semaines (`semaines.html`) */
     .page-container {
         padding: 20px 15px;
     }
 
-    .week-card {
-        flex-direction: column; /* Le bouton "Ouvrir" passe en dessous du texte */
-        align-items: flex-start;
-        gap: 15px;
+    .page-title {
+        font-size: 20px;
+    }
+
+    .title-icon {
+        font-size: 22px;
+    }
+
+    .week-text h3 {
+        font-size: 14px;
+    }
+
+    .week-text p {
+        font-size: 11.5px;
     }
 
     .btn-open {
-        width: 100%; /* Le bouton prend toute la largeur sur mobile */
-        text-align: center;
+        font-size: 12px;
+        padding: 7px 16px;
     }
 
-    /* Barre du bas (Boutons Accueil) */
-    .bottom-bar {
-        height: auto;
-        padding: 15px;
+    .week-icon-box {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
     }
 
-    .buttons-center {
-        flex-direction: column; /* Boutons l'un sur l'autre */
-        width: 100%;
-        gap: 10px;
+    .content-block p {
+        font-size: 13px;
     }
 
-    .action-btn {
-        width: 100%;
-        justify-content: center;
+    .sidebar-card h2,
+    .content-block h2 {
+        font-size: 14px;
     }
+
+    .logo-text .title {
+    font-size: 10px;
+    font-weight: 600;
+}
 }

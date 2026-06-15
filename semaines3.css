@@ -1,30 +1,36 @@
 /* ==========================================================================
-   1. VARIABLES DE THÈME & POLICES (Couleurs exactes de la maquette)
+   1. CONFIGURATION GENERALE & VARIABLES
    ========================================================================== */
+
+/* Variables globales du thème (couleurs + police principale) */
 :root {
     --dark-navy: #0a1128;       /* Couleur des bandeaux supérieurs et inférieurs */
-    --active-blue: #0c5adb;     /* Bleu vif pour l'onglet actif et boutons d'ouverture */
-    --bg-light: #f4f6f9;        /* Fond gris/blanc des pages intérieures */
+    --active-blue: #0c5adb;     /* Bleu vif (onglets actifs, boutons principaux) */
+    --bg-light: #f4f6f9;        /* Fond gris très clair des pages intérieures */
     --text-dark: #1e293b;       /* Texte principal */
-    --text-muted: #64748b;      /* Légendes, dates et sous-titres */
+    --text-muted: #64748b;      /* Textes secondaires, légendes et dates */
     --white: #ffffff;
     
-    /* Couleurs boutons accueil */
-    --btn-purple: #4933ef;      /* Violet "Semaines de stage" */
-    --btn-teal: #007a53;        /* Vert/Teal "Annexes" */
+    /* Boutons de la page d'accueil */
+    --btn-purple: #4933ef;      /* Violet pour "Semaines de stage" */
+    --btn-teal: #007a53;        /* Vert/Teal pour "Annexes" */
     
     --font-main: 'Inter', sans-serif;
 }
 
+
 /* ==========================================================================
-   2. RESET DE BASE & CONFIGURATION DU CORPS
+   2. RESET COMPLET & STRUCTURE DE BASE
    ========================================================================== */
+
+/* Reset CSS pour éviter les marges/paddings par défaut */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Structure globale du body */
 body {
     font-family: var(--font-main);
     background-color: var(--white);
@@ -35,9 +41,12 @@ body {
     overflow-x: hidden;
 }
 
+
 /* ==========================================================================
-   3. BARRE DE NAVIGATION COMMUNE (Haut de page)
+   3. BARRE DE NAVIGATION COMMUNE (TOUTES LES PAGES)
    ========================================================================== */
+
+/* Container principal de la navbar */
 .navbar {
     background-color: var(--dark-navy);
     color: var(--white);
@@ -51,6 +60,7 @@ body {
     z-index: 100;
 }
 
+/* Logo cliquable */
 .logo-link {
     text-decoration: none;
     color: inherit;
@@ -58,27 +68,32 @@ body {
     align-items: center;
 }
 
+/* Hover du titre du logo */
 .logo-link:hover .title {
     opacity: 0.85;
 }
 
+/* Bloc logos gauche / droite */
 .logo-left, .logo-right, .logo-item {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
+/* Initiales école */
 .logo-cs {
     color: #ef4444; /* Rouge du Lycée */
     font-size: 24px;
     font-weight: 800;
 }
 
+/* Icône livre */
 .book-icon {
     font-size: 22px;
     color: var(--white);
 }
 
+/* Texte logo (titre + sous-titre) */
 .logo-text {
     display: flex;
     flex-direction: column;
@@ -95,9 +110,13 @@ body {
     line-height: 1.2;
 }
 
-.uppercase { text-transform: uppercase; }
+/* Majuscules utilitaires */
+.uppercase { 
+    text-transform: uppercase; 
+}
 
-/* Liens de navigation */
+
+/* Navigation links */
 .nav-links {
     display: flex;
     align-items: center;
@@ -114,19 +133,23 @@ body {
     transition: background 0.2s ease;
 }
 
+/* Hover navigation */
 .nav-links a:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Style de l'onglet actif (Pilule bleue) */
+/* Onglet actif */
 .nav-links a.nav-btn-active {
     background-color: var(--active-blue);
     font-weight: 600;
 }
 
+
 /* ==========================================================================
-   4. ÉCRAN 1 : PAGE D'ACCUEIL (Tour de Berlin & Carré d'infos)
+   4. HERO / PAGE D'ACCUEIL (IMAGE + TITRES + INFO CARD)
    ========================================================================== */
+
+/* Container principal hero */
 .hero-container {
     flex: 1;
     position: relative;
@@ -135,10 +158,10 @@ body {
     background-position: center right;
     display: flex;
     align-items: center;
-    height: calc(100vh - 145px); /* Déduit la hauteur de la nav et du footer */
+    height: calc(100vh - 145px);
 }
 
-/* Effet de fondu blanc progressif vers la gauche */
+/* Effet de fondu gauche (overlay blanc progressif) */
 .hero-container::before {
     content: '';
     position: absolute;
@@ -147,6 +170,7 @@ body {
     z-index: 1;
 }
 
+/* Contenu texte hero */
 .hero-content {
     position: relative;
     z-index: 2;
@@ -154,6 +178,7 @@ body {
     max-width: 650px;
 }
 
+/* Titre principal */
 .main-title {
     font-size: 48px;
     font-weight: 800;
@@ -162,6 +187,7 @@ body {
     margin-bottom: 8px;
 }
 
+/* Sous-titre */
 .section-subtitle {
     font-size: 22px;
     font-weight: 700;
@@ -169,7 +195,8 @@ body {
     margin-bottom: 30px;
 }
 
-/* Les deux logos intérieurs de l'accueil */
+
+/* Logos dans hero */
 .logos-row {
     display: flex;
     gap: 40px;
@@ -180,10 +207,13 @@ body {
 .logo-cs-dark { color: #ef4444; font-size: 26px; font-weight: 800; }
 
 .logo-text-dark { display: flex; flex-direction: column; }
+
 .logo-text-dark .title { font-size: 13px; font-weight: 700; color: var(--dark-navy); }
+
 .logo-text-dark .subtitle { font-size: 10px; color: var(--text-muted); line-height: 1.2; }
 
-/* Le petit carré blanc flottant d'informations */
+
+/* Carte d'information */
 .info-card {
     background: var(--white);
     border-radius: 8px;
@@ -200,11 +230,18 @@ body {
 }
 
 .info-card p:last-child { margin-bottom: 0; }
+
 .info-card .label { font-weight: 600; color: #475569; }
+
 .info-card .val-blue { color: var(--active-blue); font-weight: 700; }
+
 .info-card .val-black { color: var(--text-dark); font-weight: 600; }
 
-/* BARRE NOIRE INFÉRIEURE (Boutons centrés) */
+
+/* ==========================================================================
+   5. BARRE INFÉRIEURE (BOUTONS ACCUEIL)
+   ========================================================================== */
+
 .bottom-bar {
     background-color: var(--dark-navy);
     height: 75px;
@@ -219,6 +256,7 @@ body {
     gap: 20px;
 }
 
+/* Boutons arrondis */
 .action-btn {
     display: inline-flex;
     align-items: center;
@@ -228,7 +266,7 @@ body {
     font-weight: 600;
     font-size: 14px;
     padding: 12px 28px;
-    border-radius: 25px; /* Forme pilule */
+    border-radius: 25px;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -240,9 +278,11 @@ body {
 .btn-purple { background-color: var(--btn-purple); }
 .btn-teal { background-color: var(--btn-teal); }
 
+
 /* ==========================================================================
-   5. STRUCURE DES PAGES INTÉRIEURES (Semaines, Détails, Annexes)
+   6. PAGES INTÉRIEURES (STRUCTURE GLOBALE)
    ========================================================================== */
+
 .page-container {
     flex: 1;
     padding: 40px 80px;
@@ -269,7 +309,8 @@ body {
     color: var(--dark-navy);
 }
 
-/* Bouton "Retour" */
+
+/* Bouton retour */
 .back-link {
     display: inline-flex;
     align-items: center;
@@ -284,9 +325,11 @@ body {
 
 .back-link:hover { color: var(--dark-navy); }
 
+
 /* ==========================================================================
-   6. ÉCRAN 2 : LISTE DES SEMAINES (`semaines.html`)
+   7. LISTE DES SEMAINES
    ========================================================================== */
+
 .weeks-list {
     display: flex;
     flex-direction: column;
@@ -348,13 +391,10 @@ body {
 
 .btn-open:hover { background-color: #0b4ec2; }
 
+
 /* ==========================================================================
-   7. ÉCRAN 3 : DÉTAIL D'UNE SEMAINE (Mise en page 2 Colonnes)
+   8. DÉTAIL SEMAINE (LAYOUT 2 COLONNES)
    ========================================================================== */
-.header-text {
-    display: flex;
-    flex-direction: column;
-}
 
 .week-detail-layout {
     display: flex;
@@ -370,6 +410,14 @@ body {
     gap: 20px;
 }
 
+.detail-sidebar {
+    flex: 1;
+    position: sticky;
+    top: 90px;
+}
+
+
+/* Blocs de contenu */
 .content-block {
     background: var(--white);
     border-radius: 8px;
@@ -395,12 +443,7 @@ body {
 }
 
 
-.detail-sidebar {
-    flex: 1;
-    position: sticky;
-    top: 90px;
-}
-
+/* Sidebar */
 .sidebar-card {
     background: var(--white);
     border-radius: 8px;
@@ -414,14 +457,13 @@ body {
     font-weight: 700;
     color: var(--dark-navy);
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
+
 /* ==========================================================================
-   8. ÉCRAN 4 : PAGE DES ANNEXES / FICHIERS LISTÉS
+   9. ANNEXES / FICHIERS
    ========================================================================== */
+
 .attachments-list {
     display: flex;
     flex-direction: column;
@@ -454,15 +496,8 @@ body {
     gap: 10px;
 }
 
-.file-info .fa-file-pdf {
-    color: #ef4444; /* Rouge PDF */
-    font-size: 16px;
-}
-
-.file-info .fa-file-image {
-    color: #3b82f6; /* Bleu Image */
-    font-size: 16px;
-}
+.file-info .fa-file-pdf { color: #ef4444; font-size: 16px; }
+.file-info .fa-file-image { color: #3b82f6; font-size: 16px; }
 
 .download-icon {
     color: var(--text-muted);
@@ -474,9 +509,11 @@ body {
     color: var(--active-blue);
 }
 
+
 /* ==========================================================================
-   8. AFFICHAGE DES IMAGES INTÉGRÉES (SIDEBAR)
+   10. IMAGES SIDEBAR
    ========================================================================== */
+
 .image-caption {
     font-size: 12.5px;
     font-weight: 600;
@@ -485,95 +522,89 @@ body {
 }
 
 .sidebar-img {
-    width: 100%;            /* L'image prend 100% de la largeur disponible de la sidebar */
-    max-width: 100%;        /* Sécurité pour éviter tout débordement */
-    height: auto;           /* Conserve le ratio d'origine (pas d'image écrasée) */
-    border-radius: 6px;     /* Coins arrondis pour s'accorder avec le reste du design */
-    border: 1px solid #e2e8f0; /* Léger contour gris épuré */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* Petite ombre discrète pour décoller l'image du fond */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     display: block;
 }
 
+
 /* ==========================================================================
-   9. ADAPTATION RESPONSIVE (Mobiles et Tablettes)
+   11. RESPONSIVE
    ========================================================================== */
 
-/* --- 1. TABLETTES & PETITS ÉCRANS (Moins de 1024px) --- */
 @media (max-width: 1024px) {
-    /* Navbar : on réduit les espaces */
     .navbar {
         padding: 0 20px;
         height: 70px;
     }
-    
-    .logo-text-real, .gls-sub-block {
-        display: none; /* Cache les petits sous-textes des logos pour gagner de la place */
-    }
 
-    /* Pages intérieures : la colonne de droite passe en dessous */
     .week-detail-layout {
         flex-direction: column;
         gap: 20px;
     }
 
     .page-container {
-        padding: 30px 40px; /* On réduit les grosses marges des côtés */
+        padding: 30px 40px;
     }
+
+    .logo-text .title {
+    font-size: 12px;
+    font-weight: 600;
+}
 }
 
-/* --- 2. SMARTPHONES (Moins de 768px) --- */
 @media (max-width: 768px) {
-    /* Accueil (Hero) */
     .hero-container {
-        background-position: center; /* Centre l'image de fond */
+        background-position: center;
         padding: 20px;
-        height: auto;
         min-height: calc(100vh - 145px);
     }
 
     .hero-content {
-        padding-left: 0; /* Aligne le contenu à gauche sur mobile */
+        padding-left: 0;
         max-width: 100%;
     }
 
     .main-title {
-        font-size: 32px; /* Titre plus petit pour éviter qu'un mot soit coupé */
+        font-size: 32px;
     }
 
     .logos-row {
-        flex-direction: column; /* Aligne les logos l'un en dessous de l'autre */
+        flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
 
     .info-card {
-        width: 100%; /* La carte d'infos prend toute la largeur */
+        width: 100%;
     }
 
-    /* Liste des semaines (`semaines.html`) */
     .page-container {
         padding: 20px 15px;
     }
 
     .week-card {
-        flex-direction: column; /* Le bouton "Ouvrir" passe en dessous du texte */
+        flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
 
     .btn-open {
-        width: 100%; /* Le bouton prend toute la largeur sur mobile */
+        width: 100%;
         text-align: center;
     }
 
-    /* Barre du bas (Boutons Accueil) */
     .bottom-bar {
         height: auto;
         padding: 15px;
     }
 
     .buttons-center {
-        flex-direction: column; /* Boutons l'un sur l'autre */
+        flex-direction: column;
         width: 100%;
         gap: 10px;
     }
@@ -582,4 +613,9 @@ body {
         width: 100%;
         justify-content: center;
     }
+
+    .logo-text .title {
+    font-size: 10px;
+    font-weight: 600;
+}
 }

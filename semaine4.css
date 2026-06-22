@@ -1,0 +1,621 @@
+/* ==========================================================================
+   1. CONFIGURATION GENERALE & VARIABLES
+   ========================================================================== */
+
+/* Variables globales du thème (couleurs + police principale) */
+:root {
+    --dark-navy: #0a1128;       /* Couleur des bandeaux supérieurs et inférieurs */
+    --active-blue: #0c5adb;     /* Bleu vif (onglets actifs, boutons principaux) */
+    --bg-light: #f4f6f9;        /* Fond gris très clair des pages intérieures */
+    --text-dark: #1e293b;       /* Texte principal */
+    --text-muted: #64748b;      /* Textes secondaires, légendes et dates */
+    --white: #ffffff;
+    
+    /* Boutons de la page d'accueil */
+    --btn-purple: #4933ef;      /* Violet pour "Semaines de stage" */
+    --btn-teal: #007a53;        /* Vert/Teal pour "Annexes" */
+    
+    --font-main: 'Inter', sans-serif;
+}
+
+
+/* ==========================================================================
+   2. RESET COMPLET & STRUCTURE DE BASE
+   ========================================================================== */
+
+/* Reset CSS pour éviter les marges/paddings par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Structure globale du body */
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* ==========================================================================
+   3. BARRE DE NAVIGATION COMMUNE (TOUTES LES PAGES)
+   ========================================================================== */
+
+/* Container principal de la navbar */
+.navbar {
+    background-color: var(--dark-navy);
+    color: var(--white);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Logo cliquable */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+/* Hover du titre du logo */
+.logo-link:hover .title {
+    opacity: 0.85;
+}
+
+/* Bloc logos gauche / droite */
+.logo-left, .logo-right, .logo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Initiales école */
+.logo-cs {
+    color: #ef4444; /* Rouge du Lycée */
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* Icône livre */
+.book-icon {
+    font-size: 22px;
+    color: var(--white);
+}
+
+/* Texte logo (titre + sous-titre) */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text .title {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.logo-text .subtitle {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.2;
+}
+
+/* Majuscules utilitaires */
+.uppercase { 
+    text-transform: uppercase; 
+}
+
+
+/* Navigation links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+/* Hover navigation */
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Onglet actif */
+.nav-links a.nav-btn-active {
+    background-color: var(--active-blue);
+    font-weight: 600;
+}
+
+
+/* ==========================================================================
+   4. HERO / PAGE D'ACCUEIL (IMAGE + TITRES + INFO CARD)
+   ========================================================================== */
+
+/* Container principal hero */
+.hero-container {
+    flex: 1;
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1599946347371-68eb71b16afc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center right;
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 145px);
+}
+
+/* Effet de fondu gauche (overlay blanc progressif) */
+.hero-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, #ffffff 35%, rgba(255, 255, 255, 0.6) 60%, transparent 100%);
+    z-index: 1;
+}
+
+/* Contenu texte hero */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-left: 80px;
+    max-width: 650px;
+}
+
+/* Titre principal */
+.main-title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--dark-navy);
+    margin-bottom: 8px;
+}
+
+/* Sous-titre */
+.section-subtitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--btn-purple);
+    margin-bottom: 30px;
+}
+
+
+/* Logos dans hero */
+.logos-row {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 25px;
+}
+
+.book-icon-dark { font-size: 24px; color: var(--dark-navy); }
+.logo-cs-dark { color: #ef4444; font-size: 26px; font-weight: 800; }
+
+.logo-text-dark { display: flex; flex-direction: column; }
+
+.logo-text-dark .title { font-size: 13px; font-weight: 700; color: var(--dark-navy); }
+
+.logo-text-dark .subtitle { font-size: 10px; color: var(--text-muted); line-height: 1.2; }
+
+
+/* Carte d'information */
+.info-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 22px 25px;
+    width: 390px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+.info-card p {
+    font-size: 13.5px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.info-card p:last-child { margin-bottom: 0; }
+
+.info-card .label { font-weight: 600; color: #475569; }
+
+.info-card .val-blue { color: var(--active-blue); font-weight: 700; }
+
+.info-card .val-black { color: var(--text-dark); font-weight: 600; }
+
+
+/* ==========================================================================
+   5. BARRE INFÉRIEURE (BOUTONS ACCUEIL)
+   ========================================================================== */
+
+.bottom-bar {
+    background-color: var(--dark-navy);
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.buttons-center {
+    display: flex;
+    gap: 20px;
+}
+
+/* Boutons arrondis */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 28px;
+    border-radius: 25px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+.btn-purple { background-color: var(--btn-purple); }
+.btn-teal { background-color: var(--btn-teal); }
+
+
+/* ==========================================================================
+   6. PAGES INTÉRIEURES (STRUCTURE GLOBALE)
+   ========================================================================== */
+
+.page-container {
+    flex: 1;
+    padding: 40px 80px;
+    background-color: var(--bg-light);
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.title-icon {
+    font-size: 26px;
+    color: var(--btn-purple);
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-navy);
+}
+
+
+/* Bouton retour */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--active-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+
+.back-link:hover { color: var(--dark-navy); }
+
+
+/* ==========================================================================
+   7. LISTE DES SEMAINES
+   ========================================================================== */
+
+.weeks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 1000px;
+}
+
+.week-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    border: 1px solid #e2e8f0;
+}
+
+.week-info-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.week-icon-box {
+    background-color: #eff6ff;
+    color: var(--active-blue);
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.week-text h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.week-text p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.btn-open {
+    background-color: var(--active-blue);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.btn-open:hover { background-color: #0b4ec2; }
+
+
+/* ==========================================================================
+   8. DÉTAIL SEMAINE (LAYOUT 2 COLONNES)
+   ========================================================================== */
+
+.week-detail-layout {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    align-items: flex-start;
+}
+
+.detail-main-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-sidebar {
+    flex: 1;
+    position: sticky;
+    top: 90px;
+}
+
+
+/* Blocs de contenu */
+.content-block {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    border: 1px solid #e2e8f0;
+}
+
+.content-block h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark-navy);
+    margin-bottom: 12px;
+    border-left: 4px solid var(--active-blue);
+    padding-left: 12px;
+}
+
+.content-block p {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+
+/* Sidebar */
+.sidebar-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    border: 1px solid #e2e8f0;
+}
+
+.sidebar-card h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark-navy);
+    margin-bottom: 15px;
+}
+
+
+/* ==========================================================================
+   9. ANNEXES / FICHIERS
+   ========================================================================== */
+
+.attachments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.attachment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid #edf2f7;
+    transition: all 0.2s ease;
+}
+
+.attachment-item:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-info .fa-file-pdf { color: #ef4444; font-size: 16px; }
+.file-info .fa-file-image { color: #3b82f6; font-size: 16px; }
+
+.download-icon {
+    color: var(--text-muted);
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.attachment-item:hover .download-icon {
+    color: var(--active-blue);
+}
+
+
+/* ==========================================================================
+   10. IMAGES SIDEBAR
+   ========================================================================== */
+
+.image-caption {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.sidebar-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: block;
+}
+
+
+/* ==========================================================================
+   11. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 0 20px;
+        height: 70px;
+    }
+
+    .week-detail-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .page-container {
+        padding: 30px 40px;
+    }
+
+    .logo-text .title {
+    font-size: 12px;
+    font-weight: 600;
+}
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        background-position: center;
+        padding: 20px;
+        min-height: calc(100vh - 145px);
+    }
+
+    .hero-content {
+        padding-left: 0;
+        max-width: 100%;
+    }
+
+    .main-title {
+        font-size: 32px;
+    }
+
+    .logos-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .info-card {
+        width: 100%;
+    }
+
+    .page-container {
+        padding: 20px 15px;
+    }
+
+    .week-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btn-open {
+        width: 100%;
+        text-align: center;
+    }
+
+    .bottom-bar {
+        height: auto;
+        padding: 15px;
+    }
+
+    .buttons-center {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .logo-text .title {
+    font-size: 10px;
+    font-weight: 600;
+}
+}
